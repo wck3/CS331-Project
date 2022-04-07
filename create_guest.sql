@@ -1,17 +1,25 @@
 
-ALTER SESSION SET nls_date_format='yyyy-mm-dd';/
+ALTER SESSION SET NLS_DATE_FORMAT ='yyyy-mm-dd';/
+ALTER SESSION SET NLS_TIMESTAMP_FORMAT ='yyyy-mm-dd hh:mi:ss';/
+
+
 
 CREATE TABLE GUEST ( 
 Ssn INT NOT NULL,
 FName VARCHAR(15) NOT NULL, 
 LName VARCHAR(20) NOT NULL,
-Age INT NOT NULL, 
+BDate DATE NOT NULL,
 PhoneNo CHAR(15),
-Email VARCHAR(255),
-RoomNo INT, 
-In_time TIME,
-Out_time TIME,
-In_date DATE,
-HasService BOOLEAN, 
-PRIMARY KEY (Ssn));/
+Email VARCHAR(35),
+RoomNo INT NOT NULL, 
+In_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+Out_time TIMESTAMP,
+HasService NUMBER(1) NOT NULL CHECK (HasService IN (1,0)), 
+PRIMARY KEY (Ssn),
+FOREIGN KEY (RoomNo) REFERENCES ROOM(RoomNo));
 
+
+INSERT INTO GUEST(Ssn, Fname, Lname, BDate, PhoneNo, Email, RoomNo, Out_Time, HasService)
+VALUES('123456789', 'Bill', 'Kaminski','2001-02-22' ,'7325879971', 'wck3@njit.edu', 218 ,'2022-04-11 05:45:22',1);/
+
+SELECT * FROM GUEST;/
