@@ -1,8 +1,5 @@
-
 ALTER SESSION SET NLS_DATE_FORMAT ='yyyy-mm-dd';/
 ALTER SESSION SET NLS_TIMESTAMP_FORMAT ='yyyy-mm-dd hh:mi:ss';/
-
-
 
 CREATE TABLE GUEST ( 
 Ssn INT NOT NULL,
@@ -16,7 +13,7 @@ In_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 Out_time TIMESTAMP,
 HasService NUMBER(1) NOT NULL CHECK (HasService IN (1,0)), 
 PRIMARY KEY (Ssn),
-FOREIGN KEY (RoomNo) REFERENCES ROOM(RoomNo));
+FOREIGN KEY (RoomNo) REFERENCES ROOM(RoomNo));/
 
 
 INSERT INTO GUEST(Ssn, Fname, Lname, BDate, PhoneNo, Email, RoomNo, Out_Time, HasService)

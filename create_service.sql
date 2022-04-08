@@ -1,25 +1,20 @@
-ALTER SESSION SET nls_date_format='yyyy-mm-dd';/
-
+ALTER SESSION SET NLS_DATE_FORMAT ='yyyy-mm-dd';/
+ALTER SESSION SET NLS_TIMESTAMP_FORMAT ='hh:mi:ss';/
 
 CREATE TABLE SERVICE ( 
 Emp_ID INT NOT NULL,
-Guest_FName VARCHAR(15) NOT NULL, 
-Guest_LName VARCHAR(20) NOT NULL,
+Guest_Ssn INT NOT NULL,
 RoomNo INT NOT NULL,
 ServType VARCHAR(30),
 ServCost INT,
-/*Serv_Time TIME NOT NULL,*/
-/*Serv_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,*/
-/*PRIMARY KEY (Emp_ID, Guest_FName, Guest_LName, RoomNo),*/
-CONSTRAINT serv_key PRIMARY KEY (Emp_ID, Guest_FName, Guest_LName, RoomNo),
+Serv_Date DATE DEFAULT CURRENT_DATE,
+Serv_Time TIMESTAMP,
+PRIMARY KEY (Emp_ID, Guest_Ssn, RoomNo),
 FOREIGN KEY (Emp_ID) REFERENCES EMPLOYEE(EmployeeID),
-FOREIGN KEY (Guest_FName) REFERENCES GUEST(FName),
-FOREIGN KEY (Guest_LName) REFERENCES GUEST(LName),
-FOREIGN KEY (RoomNo) REFERENCES ROOM(RoomNo));
+FOREIGN KEY (Guest_Ssn) REFERENCES GUEST(Ssn),
+FOREIGN KEY (RoomNo) REFERENCES ROOM(RoomNo));/
 
-
-
-INSERT INTO SERVICE(Emp_ID, Guest_FName, Guest_Lname, RoomNo, ServType, ServCost)
-VALUES(565, 'Bill', 'Kaminski', 218, 'luggage delivery', 0);/
+INSERT INTO SERVICE(Emp_ID,Guest_Ssn ,RoomNo, ServType, ServCost, Serv_Time)
+VALUES(565, 123456789 ,218, 'luggage delivery', 0, '05:20:23');/
 
 SELECT * FROM SERVICE;/
